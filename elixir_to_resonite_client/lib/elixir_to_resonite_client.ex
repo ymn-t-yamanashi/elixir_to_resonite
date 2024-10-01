@@ -16,10 +16,10 @@ defmodule ElixirToResoniteClient do
     F.join()
     |> send_instructions(socket, 250)
 
-    -100..100
+    -10..200
     |> Enum.map(fn x ->
       []
-      |> F.move("Cylinder", "#{x * 0.1}", "1.0", "2.0")
+      |> F.move("Cylinder", "#{x * 0.1}", "#{x * 0.1}", "2.0")
       |> F.move("Box", "1.0", "2.0", "#{x * 0.1}")
     end)
     |> send_instructions(socket, 10)
