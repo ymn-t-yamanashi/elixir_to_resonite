@@ -1,15 +1,20 @@
 defmodule ElixirToResoniteClient.InstructionCreation do
   def move(send_datas, name, x, y, z) do
-    data =
-      create_field("move") <>
-        create_field(name) <> create_field(x) <> create_field(y) <> create_field(z)
-
-    send_data(send_datas, data)
+    send_data(send_datas, "move", name, x, y, z)
   end
 
   def create_field(value) do
-    value <> String.duplicate(" ", 20)
+    (value <> String.duplicate(" ", 20))
     |> String.slice(0, 20)
+  end
+
+  def send_data(send_datas, instruction, name, argument1, argument2, argument3) do
+    data =
+      create_field(instruction) <>
+        create_field(name) <>
+        create_field(argument1) <> create_field(argument2) <> create_field(argument3)
+
+    send_data(send_datas, data)
   end
 
   def send_data(send_datas, data) do

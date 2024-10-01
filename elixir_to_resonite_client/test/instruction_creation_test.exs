@@ -17,6 +17,17 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == expected
   end
 
+  test "send_data/6" do
+    result =
+      ElixirToResoniteClient.InstructionCreation.send_data([], "move", "Box", "1.0", "1.1", "1.2")
+
+    expected = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Box                 1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected]
+  end
+
   test "send_data" do
     result = ElixirToResoniteClient.InstructionCreation.send_data([], "ssss")
 
