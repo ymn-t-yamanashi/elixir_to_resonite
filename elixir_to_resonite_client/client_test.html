@@ -1,0 +1,64 @@
+<html>
+<script>
+    // WebSocketの通信内容調査結果
+    // ["3","3","resonite:lobby","phx_join",{}]	36	
+    // 20:07:11.163
+    // ["3","3","resonite:lobby","phx_reply",{"status":"ok","response":{}}]	64	
+    // 20:07:11.171
+    // ["3","4","resonite:lobby","new_msg",{"body":"ああああ"}]	48	
+    // 20:07:15.684
+    // [null,null,"resonite:lobby","new_msg",{"body":"ああああ"}]	50	
+    // 20:07:15.686
+    // [null,"5","phoenix","heartbeat",{}]	35	
+    // 20:07:41.163
+    // [null,"5","phoenix","phx_reply",{"status":"ok","response":{}}]	62	
+    // 20:07:41.165
+    // [null,"6","phoenix","heartbeat",{}]	35	
+    // 20:08:11.165
+    // [null,"6","phoenix","phx_reply",{"status":"ok","response":{}}]	62	
+    // 20:08:11.166
+    // [null,"7","phoenix","heartbeat",{}]	35	
+    // 20:08:41.167
+    
+    
+    // 12345678901234567890+
+    // move                +
+    // Box                 +  
+    // 1                   +
+    // 2                   +
+    // 3                   +
+    // 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890+
+    // move                Box                 1                   2                   3                   +
+    // [null,null,"resonite:lobby","new_msg",{"body":"move                Box                 1                   2                   3                   "}]
+
+    const ws = new WebSocket('ws://localhost:4000/socket/websocket?token=undefined&vsn=2.0.0')
+
+    // 接続後にphx_joinを送る
+    ws.onopen = () => {
+        ws.send('["","","resonite:lobby","phx_join",{}]');
+    };
+
+    // htmlロード後
+    window.addEventListener('load', function () {
+        const text = document.querySelector("#text")
+        // テキストボックスでEnterキーが押されたら、テキストボックスの内容を送信
+        text.addEventListener("keypress", event => {
+            if (event.key !== 'Enter') return
+            data = '["","","resonite:lobby","new_msg",{"body":"' + text.value + '"}]'
+            ws.send(data)
+            text.value = ""
+        })
+    });
+
+    // 受信時にdevタグの内容に追加
+    ws.onmessage = (event) => {
+        const msg = document.querySelector("#msg")
+        msg.innerHTML = event.data + "<br>" + msg.innerHTML
+    };
+
+</script>
+<input id="text" type="text">
+<div id="msg">
+</div>
+
+</html>
