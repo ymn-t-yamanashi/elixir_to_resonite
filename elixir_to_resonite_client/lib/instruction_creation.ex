@@ -16,6 +16,15 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     data = """
     ["3","4","resonite:lobby","new_msg",{"body":"#{data}"}]
     """
+
     send_datas ++ [data]
+  end
+
+  def join() do
+    phx_join = """
+    ["3","3","resonite:lobby","phx_join",{}]
+    """
+
+    [phx_join]
   end
 end

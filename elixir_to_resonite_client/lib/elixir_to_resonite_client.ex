@@ -12,7 +12,9 @@ defmodule ElixirToResoniteClient do
   def hello do
     socket =
       Web.connect!("localhost", 4000, path: "/socket/websocket?token=undefined&vsn=2.0.0")
-      |> join()
+
+    InstructionCreation.join()
+    |> send_instructions(socket, 250)
 
     [
       ["Box", "1.0", "2.0", "1.0"],
@@ -29,7 +31,7 @@ defmodule ElixirToResoniteClient do
     :world
   end
 
-  def frame([m, x, y, z], socket) do
+  defp frame([m, x, y, z], socket) do
     []
     |> InstructionCreation.move(m, x, y, z)
     |> send_instructions(socket, 250)
@@ -42,14 +44,5 @@ defmodule ElixirToResoniteClient do
     end)
 
     Process.sleep(sleep)
-  end
-
-  def join(socket) do
-    phx_join = """
-    ["3","3","resonite:lobby","phx_join",{}]
-    """
-
-    Web.send!(socket, {:text, phx_join})
-    socket
   end
 end
