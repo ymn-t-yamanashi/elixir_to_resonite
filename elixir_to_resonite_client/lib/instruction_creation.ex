@@ -8,7 +8,7 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   def create_field(value) do
-    (value <> String.duplicate(" ", 20))
+    value <> String.duplicate(" ", 20)
     |> String.slice(0, 20)
   end
 
