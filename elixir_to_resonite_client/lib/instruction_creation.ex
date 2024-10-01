@@ -25,6 +25,6 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     ["3","3","resonite:lobby","phx_join",{}]
     """
 
-    [phx_join]
+    [[phx_join]]
   end
 end

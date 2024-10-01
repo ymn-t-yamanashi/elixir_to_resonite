@@ -16,33 +16,25 @@ defmodule ElixirToResoniteClient do
     InstructionCreation.join()
     |> send_instructions(socket, 250)
 
-    [
-      ["Box", "1.0", "2.0", "1.0"],
-      ["Cylinder", "1.0", "2.0", "2.0"],
-      ["Box", "1.0", "3.0", "1"],
-      ["Box", "1.0", "4.0", "1"],
-      ["Box", "1.0", "5.0", "1"],
-      ["Cylinder", "1.0", "2.0", "3"],
-      ["Cylinder", "1.0", "2.0", "4"],
-      ["Cylinder", "1.0", "2.0", "5"]
-    ]
-    |> Enum.each(fn data -> frame(data, socket) end)
+    -100..100
+    |> Enum.map(fn x ->
+      []
+      |> InstructionCreation.move("Cylinder", "#{x * 0.1}", "1.0", "2.0")
+      |> InstructionCreation.move("Box", "1.0", "2.0", "#{x * 0.1}")
+    end)
+    |> send_instructions(socket, 10)
 
     :world
   end
 
-  defp frame([m, x, y, z], socket) do
-    []
-    |> InstructionCreation.move(m, x, y, z)
-    |> send_instructions(socket, 250)
-  end
-
   def send_instructions(instructions, socket, sleep) do
     instructions
-    |> Enum.each(fn data ->
-      Web.send!(socket, {:text, data})
+    |> Enum.each(fn frame ->
+      frame
+      |> Enum.each(fn data ->
+        Web.send!(socket, {:text, data})
+      end)
+      Process.sleep(sleep)
     end)
-
-    Process.sleep(sleep)
   end
 end
