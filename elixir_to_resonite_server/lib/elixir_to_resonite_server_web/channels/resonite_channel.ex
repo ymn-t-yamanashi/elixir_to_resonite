@@ -10,6 +10,11 @@ defmodule ElixirToResoniteServerWeb.ResoniteChannel do
     end
   end
 
+  def handle_in("new_msg", %{"body" => body}, socket) do
+    broadcast!(socket, "new_msg", %{body: body})
+    {:noreply, socket}
+  end
+
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
   @impl true
