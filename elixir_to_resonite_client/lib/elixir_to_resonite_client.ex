@@ -3,47 +3,45 @@ defmodule ElixirToResoniteClient do
   Documentation for `ElixirToResoniteClient`.
   """
   alias Socket.Web
+  alias ElixirToResoniteClient.InstructionCreation
 
   @doc """
   Hello world.
 
   """
   def hello do
-    Web.connect!("localhost", 4000, path: "/socket/websocket?token=undefined&vsn=2.0.0")
-    |> join()
-    |> move("Box", "1.0", "2.0", "1.0")
-    |> move("Cylinder", "1.0", "2.0", "2.0")
-    |> move("Box", "1.0", "3.0", "1")
-    |> move("Box", "1.0", "4.0", "1")
-    |> move("Box", "1.0", "5.0", "1")
-    |> move("Cylinder", "1.0", "2.0", "3")
-    |> move("Cylinder", "1.0", "2.0", "4")
-    |> move("Cylinder", "1.0", "2.0", "5")
+    socket =
+      Web.connect!("localhost", 4000, path: "/socket/websocket?token=undefined&vsn=2.0.0")
+      |> join()
+
+    [
+      ["Box", "1.0", "2.0", "1.0"],
+      ["Cylinder", "1.0", "2.0", "2.0"],
+      ["Box", "1.0", "3.0", "1"],
+      ["Box", "1.0", "4.0", "1"],
+      ["Box", "1.0", "5.0", "1"],
+      ["Cylinder", "1.0", "2.0", "3"],
+      ["Cylinder", "1.0", "2.0", "4"],
+      ["Cylinder", "1.0", "2.0", "5"]
+    ]
+    |> Enum.each(fn data -> frame(data, socket) end)
 
     :world
   end
 
-  def move(socket, name, x, y, z) do
-    data =
-      create_field("move") <>
-        create_field(name) <> create_field(x) <> create_field(y) <> create_field(z)
-
-    send_data(socket, data)
+  def frame([m, x, y, z], socket) do
+    []
+    |> InstructionCreation.move(m, x, y, z)
+    |> send_instructions(socket, 250)
   end
 
-  def create_field(value) do
-    (value <> String.duplicate(" ", 20))
-    |> String.slice(0, 20)
-  end
+  def send_instructions(instructions, socket, sleep) do
+    instructions
+    |> Enum.each(fn data ->
+      Web.send!(socket, {:text, data})
+    end)
 
-  def send_data(socket, data) do
-    data = """
-    ["3","4","resonite:lobby","new_msg",{"body":"#{data}"}]
-    """
-
-    Web.send!(socket, {:text, data})
-    Process.sleep(250)
-    socket
+    Process.sleep(sleep)
   end
 
   def join(socket) do
