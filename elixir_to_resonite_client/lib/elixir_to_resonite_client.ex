@@ -3,7 +3,7 @@ defmodule ElixirToResoniteClient do
   Documentation for `ElixirToResoniteClient`.
   """
   alias Socket.Web
-  alias ElixirToResoniteClient.InstructionCreation
+  alias ElixirToResoniteClient.InstructionCreation, as: F
 
   @doc """
   Hello world.
@@ -13,14 +13,14 @@ defmodule ElixirToResoniteClient do
     socket =
       Web.connect!("localhost", 4000, path: "/socket/websocket?token=undefined&vsn=2.0.0")
 
-    InstructionCreation.join()
+    F.join()
     |> send_instructions(socket, 250)
 
     -100..100
     |> Enum.map(fn x ->
       []
-      |> InstructionCreation.move("Cylinder", "#{x * 0.1}", "1.0", "2.0")
-      |> InstructionCreation.move("Box", "1.0", "2.0", "#{x * 0.1}")
+      |> F.move("Cylinder", "#{x * 0.1}", "1.0", "2.0")
+      |> F.move("Box", "1.0", "2.0", "#{x * 0.1}")
     end)
     |> send_instructions(socket, 10)
 
@@ -34,6 +34,7 @@ defmodule ElixirToResoniteClient do
       |> Enum.each(fn data ->
         Web.send!(socket, {:text, data})
       end)
+
       Process.sleep(sleep)
     end)
   end
