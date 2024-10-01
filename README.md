@@ -32,4 +32,5 @@ $ cd elixir_to_resonite_client
 $ mix run -e "ElixirToResoniteClient.hello()"
 ```
 
-<iframe width="1116" height="628" src="https://www.youtube.com/embed/MfnUzYgfaao" title="elixir_to_resonite v0.001" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+# 動作動画
+https://www.youtube.com/embed/MfnUzYgfaao
