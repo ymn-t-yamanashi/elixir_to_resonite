@@ -5,7 +5,7 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     result = ElixirToResoniteClient.InstructionCreation.move([], "Box", "1.0", "1.1", "1.2")
 
     expected = """
-    ["3","4","resonite:lobby","new_msg",{"body":"move                Box                 1.0                 1.1                 1.2                 "}]
+    ["","","resonite:lobby","new_msg",{"body":"move                Box                 1.0                 1.1                 1.2                 "}]
     """
 
     assert result == [expected]
@@ -21,7 +21,7 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     result = ElixirToResoniteClient.InstructionCreation.send_data([], "ssss")
 
     expected = """
-    ["3","4","resonite:lobby","new_msg",{"body":"ssss"}]
+    ["","","resonite:lobby","new_msg",{"body":"ssss"}]
     """
 
     assert result == [expected]
@@ -31,7 +31,7 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     result = ElixirToResoniteClient.InstructionCreation.join()
 
     expected = """
-    ["3","3","resonite:lobby","phx_join",{}]
+    ["","","resonite:lobby","phx_join",{}]
     """
 
     assert result == [[expected]]
