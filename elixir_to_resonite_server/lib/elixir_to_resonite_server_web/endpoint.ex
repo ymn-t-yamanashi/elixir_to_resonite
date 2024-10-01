@@ -16,7 +16,9 @@ defmodule ElixirToResoniteServerWeb.Endpoint do
     longpoll: [connect_info: [session: @session_options]]
 
   socket "/socket", ElixirToResoniteServerWeb.ResoniteSocket,
-    websocket: true,
+    websocket: [
+      timeout: :infinity
+    ],
     longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
