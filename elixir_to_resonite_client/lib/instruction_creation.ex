@@ -1,6 +1,6 @@
 defmodule ElixirToResoniteClient.InstructionCreation do
   def move(send_datas, name, x, y, z) do
-    send_data(send_datas, "move", name, x, y, z)
+    send_data(send_datas, "move", name, "#{x}", "#{y}", "#{z}")
   end
 
   def create_field(value) do
