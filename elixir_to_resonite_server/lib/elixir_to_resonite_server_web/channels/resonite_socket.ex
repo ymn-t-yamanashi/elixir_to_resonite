@@ -19,6 +19,7 @@ defmodule ElixirToResoniteServerWeb.ResoniteSocket do
   # See the [`Channels guide`](https://hexdocs.pm/phoenix/channels.html)
   # for further details.
 
+  channel "resonite:lobby", ElixirToResoniteServerWeb.ResoniteChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
