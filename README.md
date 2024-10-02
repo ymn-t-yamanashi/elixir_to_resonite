@@ -6,6 +6,7 @@
 
 ```sh
 $ cd elixir_to_resonite_server
+$ mix deps.get
 $ mix phx.server
 ```
 
@@ -31,6 +32,7 @@ ProtoFlux/V0.001/elixir_to_resonite.resonitepackage
 
 ```sh
 $ cd elixir_to_resonite_client
+$ mix deps.get
 $ mix run -e "ElixirToResoniteClient.hello()"
 ```
 
