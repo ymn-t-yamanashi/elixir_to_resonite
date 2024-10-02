@@ -3,7 +3,7 @@ defmodule ElixirToResoniteClientTest do
 
   test "greets the world" do
     if System.get_env("TEST") == "OK" do
-        ElixirToResoniteClient.hello()
+      ElixirToResoniteClient.hello()
     end
   end
 end

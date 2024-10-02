@@ -13,6 +13,42 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected]
   end
 
+  test "copy" do
+    result = InstructionCreation.copy([], "Box", "Box2")
+
+    expected = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Box                 Box2                                                        "}]
+    """
+
+    assert result == [expected]
+  end
+
+  test "delete" do
+    result = InstructionCreation.delete([], "Box2")
+
+    expected = """
+    ["","","resonite:lobby","new_msg",{"body":"delete              Box2                                                                            "}]
+    """
+
+    assert result == [expected]
+  end
+
+  test "init_frame" do
+    result = InstructionCreation.init_frame()
+
+    expected = []
+
+    assert result == expected
+  end
+
+  test "create_instructions" do
+    result = InstructionCreation.create_instructions([])
+
+    expected = [[]]
+
+    assert result == expected
+  end
+
   test "create_field" do
     result = InstructionCreation.create_field("1234567890")
     expected = "1234567890          "
