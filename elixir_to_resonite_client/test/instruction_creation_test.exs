@@ -1,8 +1,10 @@
 defmodule ElixirToResoniteClient.InstructionCreationTest do
   use ExUnit.Case
 
+  alias ElixirToResoniteClient.InstructionCreation
+
   test "move" do
-    result = ElixirToResoniteClient.InstructionCreation.move([], "Box", "1.0", "1.1", "1.2")
+    result = InstructionCreation.move([], "Box", "1.0", "1.1", "1.2")
 
     expected = """
     ["","","resonite:lobby","new_msg",{"body":"move                Box                 1.0                 1.1                 1.2                 "}]
@@ -12,14 +14,13 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
   end
 
   test "create_field" do
-    result = ElixirToResoniteClient.InstructionCreation.create_field("1234567890")
+    result = InstructionCreation.create_field("1234567890")
     expected = "1234567890          "
     assert result == expected
   end
 
   test "send_data/6" do
-    result =
-      ElixirToResoniteClient.InstructionCreation.send_data([], "move", "Box", "1.0", "1.1", "1.2")
+    result = InstructionCreation.send_data([], "move", "Box", "1.0", "1.1", "1.2")
 
     expected = """
     ["","","resonite:lobby","new_msg",{"body":"move                Box                 1.0                 1.1                 1.2                 "}]
@@ -29,7 +30,7 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
   end
 
   test "send_data" do
-    result = ElixirToResoniteClient.InstructionCreation.send_data([], "ssss")
+    result = InstructionCreation.send_data([], "ssss")
 
     expected = """
     ["","","resonite:lobby","new_msg",{"body":"ssss"}]
@@ -39,12 +40,22 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
   end
 
   test "join" do
-    result = ElixirToResoniteClient.InstructionCreation.join()
+    result = InstructionCreation.join()
 
     expected = """
     ["","","resonite:lobby","phx_join",{}]
     """
 
     assert result == [[expected]]
+  end
+
+  test "base_data" do
+    result = InstructionCreation.base_data("phx_join", "")
+
+    expected = """
+    ["","","resonite:lobby","phx_join",{}]
+    """
+
+    assert result == expected
   end
 end
