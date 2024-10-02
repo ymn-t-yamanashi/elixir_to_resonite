@@ -16,12 +16,16 @@ defmodule ElixirToResoniteClient.Socket do
   def send_instructions([], _socket, _timeout), do: nil
 
   def send_instructions([frame | instructions], socket, timeout) do
-    frame
-    |> Enum.each(fn data ->
-      Web.send!(socket, {:text, data})
-    end)
+    send_frame(frame, socket)
 
     Process.sleep(timeout)
     send_instructions(instructions, socket, timeout)
+  end
+
+  def send_frame([], _socket), do: nil
+
+  def send_frame([frame | frames], socket) do
+    Web.send!(socket, {:text, frame})
+    send_frame(frames, socket)
   end
 end
