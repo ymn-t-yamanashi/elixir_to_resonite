@@ -28,8 +28,7 @@ defmodule Sample.Sample1 do
 
     F.init_frame()
     |> F.move("Box", x, x, y)
-    |> F.create_instructions()
-    |> Socket.send_instructions(socket, 10)
+    |> Socket.send_frame(socket, 10)
 
     run_frame_box(t, socket)
   end
@@ -44,8 +43,7 @@ defmodule Sample.Sample1 do
   def run_frame_cylinder([h | t], socket) do
     F.init_frame()
     |> F.move("Cylinder", h, 2.0, 2.0)
-    |> F.create_instructions()
-    |> Socket.send_instructions(socket, 200)
+    |> Socket.send_frame(socket, 200)
 
     run_frame_cylinder(t, socket)
   end
