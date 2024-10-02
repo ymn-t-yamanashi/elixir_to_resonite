@@ -13,15 +13,14 @@ defmodule ElixirToResoniteClient.Socket do
   @doc """
   Send instructions using WebSocket
   """
-  def send_instructions(instructions, socket, timeout) do
-    instructions
-    |> Enum.each(fn frame ->
-      frame
-      |> Enum.each(fn data ->
-        Web.send!(socket, {:text, data})
-      end)
-
-      Process.sleep(timeout)
+  def send_instructions([], _socket, _timeout), do: nil
+  def send_instructions([frame | instructions], socket, timeout) do
+    frame
+    |> Enum.each(fn data ->
+      Web.send!(socket, {:text, data})
     end)
+
+    Process.sleep(timeout)
+    send_instructions(instructions, socket, timeout)
   end
 end
