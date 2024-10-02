@@ -20,12 +20,10 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   def send_data(send_datas, instruction, name, argument1, argument2, argument3) do
-    data =
-      create_field(instruction) <>
-        create_field(name) <>
-        create_field(argument1) <> create_field(argument2) <> create_field(argument3)
-
-    send_data(send_datas, data)
+    [instruction, name, argument1, argument2, argument3]
+    |>  Enum.map(& create_field(&1))
+    |> List.to_string()
+    |> then(& send_data(send_datas, &1))
   end
 
   def send_data(send_datas, data) do
