@@ -37,6 +37,10 @@ jobs:
       run: |
         cd elixir_to_resonite_client
         mix deps.get
+    - name: format --check-formatted
+      run: | 
+        cd elixir_to_resonite_client
+        mix format --check-formatted
     - name: Run tests
       run: | 
         cd elixir_to_resonite_client
