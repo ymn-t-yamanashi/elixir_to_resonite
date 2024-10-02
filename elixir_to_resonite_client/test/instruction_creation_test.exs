@@ -41,14 +41,6 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == expected
   end
 
-  test "create_instructions" do
-    result = InstructionCreation.create_instructions([])
-
-    expected = [[]]
-
-    assert result == expected
-  end
-
   test "create_field" do
     result = InstructionCreation.create_field("1234567890")
     expected = "1234567890          "

@@ -30,11 +30,6 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   def init_frame(), do: []
 
   @doc """
-  Creating a block of instructions
-  """
-  def create_instructions(instruction), do: [instruction]
-
-  @doc """
   Create a field
   """
   def create_field(value) do
