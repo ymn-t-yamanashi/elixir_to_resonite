@@ -63,7 +63,7 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   """
   def join() do
     phx_join = base_data("phx_join", "")
-    [[phx_join]]
+    [phx_join]
   end
 
   @doc """

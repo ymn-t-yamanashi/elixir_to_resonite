@@ -82,7 +82,7 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     ["","","resonite:lobby","phx_join",{}]
     """
 
-    assert result == [[expected]]
+    assert result == [expected]
   end
 
   test "base_data" do

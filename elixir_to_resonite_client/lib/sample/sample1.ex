@@ -6,7 +6,7 @@ defmodule Sample.Sample1 do
     socket = Socket.connect!()
 
     F.join()
-    |> Socket.send_instructions(socket, 10)
+    |> Socket.send_frame(socket, 0)
 
     Task.async(fn -> task_box(socket) end)
     Task.async(fn -> task_cylinder(socket) end)

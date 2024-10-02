@@ -13,7 +13,7 @@ defmodule ElixirToResoniteClient do
     socket = Socket.connect!()
 
     F.join()
-    |> Socket.send_instructions(socket, 10)
+    |> Socket.send_frame(socket, 0)
 
     F.init_frame()
     |> F.copy("Box", "TestBo2")
