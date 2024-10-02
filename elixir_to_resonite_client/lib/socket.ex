@@ -3,11 +3,17 @@ defmodule ElixirToResoniteClient.Socket do
   """
   alias Socket.Web
 
+  @doc """
+  Connecting via WebSocket
+  """
   def connect!() do
     Web.connect!("localhost", 4000, path: "/socket/websocket?token=undefined&vsn=2.0.0")
   end
 
-  def send_instructions(instructions, socket, sleep) do
+  @doc """
+  Send instructions using WebSocket
+  """
+  def send_instructions(instructions, socket, timeout) do
     instructions
     |> Enum.each(fn frame ->
       frame
@@ -15,7 +21,7 @@ defmodule ElixirToResoniteClient.Socket do
         Web.send!(socket, {:text, data})
       end)
 
-      Process.sleep(sleep)
+      Process.sleep(timeout)
     end)
   end
 end
