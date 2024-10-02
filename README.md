@@ -19,9 +19,11 @@ ProtoFlux/V0.001/elixir_to_resonite.resonitepackage
 
 2) アンパックしてください
 ![elixir_to_resonite](ProtoFlux/V0.001/v0001.png)
-3) 「Call」と「Async Call」を押してください
+3) Slot InputをRootに設定しいください
+![elixir_to_resonite](ProtoFlux/V0.001/v0001_4.png)
+4) 「Call」と「Async Call」を押してください
 ![elixir_to_resonite](ProtoFlux/V0.001/v0001_2.png)
-4) 「Cylinder」と「Box」を作成してください
+5) 「Cylinder」と「Box」を作成してください
 ![elixir_to_resonite](ProtoFlux/V0.001/v0001_3.png)
 
 #### Elixir操作クライアント
