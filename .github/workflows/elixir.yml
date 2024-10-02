@@ -33,9 +33,6 @@ jobs:
         path: deps
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
-    - name: apt Install
-      run: |
-        apt update
     - name: Install dependencies
       run: |
         cd elixir_to_resonite_client
