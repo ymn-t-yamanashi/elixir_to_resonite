@@ -14,7 +14,7 @@ $ mix phx.server
 
 1)
 ```
-ProtoFlux/V0.001/elixir_to_resonite.resonitepackage
+ProtoFlux/V0.002/elixir_to_resonite.resonitepackage
 ```
 ワールドにインポートしてください
 
