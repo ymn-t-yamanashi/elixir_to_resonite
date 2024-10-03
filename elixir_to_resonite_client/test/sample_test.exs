@@ -7,5 +7,6 @@ defmodule Sample.SampleTest do
   end
 
   def sample("1"), do: Sample.Sample1.run()
+  def sample("2"), do: Sample.Sample2.run()
   def sample(_), do: nil
 end
