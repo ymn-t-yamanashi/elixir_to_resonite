@@ -18,7 +18,6 @@ defmodule ElixirToResoniteClient do
     F.init_frame()
     |> F.copy("Box", "TestBo2")
     |> F.move("TestBo2", 1.0, 2.0, 1.0)
-
     |> Socket.send_frame(socket, 0)
 
     -10..200
