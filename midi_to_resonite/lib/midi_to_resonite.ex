@@ -38,7 +38,13 @@ defmodule MidiToResonite do
 
   def get_data({_, []}), do: nil
 
-  def get_data(data) do
+  def get_data({_, data}) do
+    IO.inspect("--------------")
+    data
+    |> Enum.each(fn x -> get_midi_data(x) end)
+  end
+
+  def get_midi_data({data, _}) do
     IO.inspect(data)
   end
 
