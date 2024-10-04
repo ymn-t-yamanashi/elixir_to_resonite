@@ -31,8 +31,15 @@ defmodule MidiToResonite do
   def midi_in(input) do
     receive do
       data ->
-        IO.inspect(data)
+        get_data(data)
         midi_in(input)
     end
   end
+
+  def get_data({_, []}), do: nil
+
+  def get_data(data) do
+    IO.inspect(data)
+  end
+
 end
