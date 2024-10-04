@@ -43,7 +43,7 @@ defmodule MidiToResonite do
     |> Enum.each(fn x -> get_midi_data(x, socket) end)
   end
 
-  def get_midi_data({{_, x, _}, _}, socket) do
+  def get_midi_data({{_, x, 63}, _}, socket) do
     v =
       case x do
         48 -> 1
@@ -57,4 +57,6 @@ defmodule MidiToResonite do
 
     IO.inspect(v)
   end
+
+  def get_midi_data(x, _socket), do: nil
 end
