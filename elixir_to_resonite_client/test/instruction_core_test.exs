@@ -3,7 +3,6 @@ defmodule ElixirToResoniteClient.InstructionCoreTest do
 
   alias ElixirToResoniteClient.InstructionCore
 
-
   test "create_field" do
     result = InstructionCore.create_field("1234567890")
     expected = "1234567890          "

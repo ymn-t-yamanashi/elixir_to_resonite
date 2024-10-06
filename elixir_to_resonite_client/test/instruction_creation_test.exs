@@ -50,5 +50,4 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
 
     assert result == [expected]
   end
-
 end
