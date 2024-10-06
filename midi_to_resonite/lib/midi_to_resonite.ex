@@ -58,5 +58,5 @@ defmodule MidiToResonite do
     IO.inspect(v)
   end
 
-  def get_midi_data(x, _socket), do: nil
+  def get_midi_data(_x, _socket), do: nil
 end
