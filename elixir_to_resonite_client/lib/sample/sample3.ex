@@ -1,11 +1,11 @@
 defmodule Sample.Sample3 do
-  alias ElixirToResoniteClient.InstructionCreation, as: F
+  import ElixirToResoniteClient.InstructionCreation
   alias ElixirToResoniteClient.Socket
 
   def run do
     socket = Socket.connect!()
 
-    F.join()
+    join()
     |> Socket.send_frame(socket, 0)
 
     task_box(socket)
@@ -25,12 +25,12 @@ defmodule Sample.Sample3 do
     x = :math.sin(c * h * 1.2) * 5 + 10.0
     y = :math.cos(c * h * 1.5) * 5 + 10.0
 
-    F.init_frame()
-    |> F.move("ParticleSystem", x, y, 2)
-    |> F.move("ParticleSystem1", x, y, y)
-    |> F.move("ParticleSystem2", x, y, x)
-    |> F.move("ParticleSystem3", x, x, x)
-    |> F.move("ParticleSystem4", y, y, x)
+    init_frame()
+    |> move("ParticleSystem", x, y, 2)
+    |> move("ParticleSystem1", x, y, y)
+    |> move("ParticleSystem2", x, y, x)
+    |> move("ParticleSystem3", x, x, x)
+    |> move("ParticleSystem4", y, y, x)
     |> Socket.send_frame(socket, 10)
 
     run_frame_box(t, socket)
