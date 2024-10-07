@@ -27,6 +27,13 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   @doc """
+  Rotate the 3D model object
+  """
+  def rotate(send_datas, name, x, y, z) do
+    create_send_data(send_datas, "rotate", name, "#{x}", "#{y}", "#{z}")
+  end
+
+  @doc """
   Initialize the animation to the first frame
   """
   def init_frame(), do: []

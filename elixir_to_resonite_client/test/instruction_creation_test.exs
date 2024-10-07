@@ -33,6 +33,16 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected]
   end
 
+  test "rotate" do
+    result = InstructionCreation.rotate([], "Box", "1.0", "1.1", "1.2")
+
+    expected = """
+    ["","","resonite:lobby","new_msg",{"body":"rotate              Box                 1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected]
+  end
+
   test "init_frame" do
     result = InstructionCreation.init_frame()
 
