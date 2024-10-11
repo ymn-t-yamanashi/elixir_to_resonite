@@ -43,6 +43,16 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected]
   end
 
+  test "size" do
+    result = InstructionCreation.size([], "Box", "1.0", "1.1", "1.2")
+
+    expected = """
+    ["","","resonite:lobby","new_msg",{"body":"size                Box                 1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected]
+  end
+
   test "init_frame" do
     result = InstructionCreation.init_frame()
 

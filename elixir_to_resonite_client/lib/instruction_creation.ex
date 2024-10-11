@@ -34,6 +34,13 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   @doc """
+  Size the 3D model object
+  """
+  def size(send_datas, name, x, y, z) do
+    create_send_data(send_datas, "size", name, "#{x}", "#{y}", "#{z}")
+  end
+
+  @doc """
   Initialize the animation to the first frame
   """
   def init_frame(), do: []
