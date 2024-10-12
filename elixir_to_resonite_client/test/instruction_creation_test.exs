@@ -53,6 +53,20 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected]
   end
 
+  test "create_box" do
+    result = InstructionCreation.create_box([], "Box1", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Box                 Box1                                                        "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Box1                1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
+
   test "init_frame" do
     result = InstructionCreation.init_frame()
 
