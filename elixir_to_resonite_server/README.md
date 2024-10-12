@@ -1,2 +1,4 @@
+```
 docker build -t rsv .
-docker run rsv -p 4000:4000
+docker run -p 4000:4000 rsv
+```
