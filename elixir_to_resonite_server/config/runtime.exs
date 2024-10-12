@@ -49,7 +49,8 @@ if config_env() == :prod do
       port: port
     ],
     secret_key_base: "t95kbT192Z8gKjzgeoxCp8snU0YdlpJPx5tA2oUwma49terfHoyvT7IWvquYHSTv"
-    #secret_key_base: secret_key_base
+
+  # secret_key_base: secret_key_base
 
   # ## SSL Support
   #
