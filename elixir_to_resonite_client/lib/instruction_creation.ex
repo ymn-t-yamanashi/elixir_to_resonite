@@ -56,6 +56,14 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     |> move(name, x, y, z)
   end
 
+  # Cone
+  # Cylinder
+  # Grid
+  # Quad
+  # Sphere
+  # Torus
+  # Triangle
+
   @doc """
   Initialize the animation to the first frame
   """
