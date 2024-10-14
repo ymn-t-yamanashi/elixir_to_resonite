@@ -49,6 +49,14 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   @doc """
+  Cylinder box the 3D model object
+  """
+  def create_cylinder(send_datas, name, x, y, z) do
+    copy(send_datas, "Cylinder", name)
+    |> move(name, x, y, z)
+  end
+
+  @doc """
   Initialize the animation to the first frame
   """
   def init_frame(), do: []

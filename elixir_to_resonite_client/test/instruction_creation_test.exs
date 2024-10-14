@@ -67,6 +67,20 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected1, expected2]
   end
 
+  test "create_cylinder" do
+    result = InstructionCreation.create_cylinder([], "Cylinder1", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Cylinder            Cylinder1                                                   "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Cylinder1           1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
+
   test "init_frame" do
     result = InstructionCreation.init_frame()
 
