@@ -41,19 +41,25 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   @doc """
+  Create 3D model object
+  """
+  def create_object(send_datas, object, name, x, y, z) do
+    copy(send_datas, object, name)
+    |> move(name, x, y, z)
+  end
+
+  @doc """
   Create box the 3D model object
   """
   def create_box(send_datas, name, x, y, z) do
-    copy(send_datas, "Box", name)
-    |> move(name, x, y, z)
+    create_object(send_datas, "Box", name, x, y, z)
   end
 
   @doc """
   Cylinder box the 3D model object
   """
   def create_cylinder(send_datas, name, x, y, z) do
-    copy(send_datas, "Cylinder", name)
-    |> move(name, x, y, z)
+    create_object(send_datas, "Cylinder", name, x, y, z)
   end
 
   # Cone
