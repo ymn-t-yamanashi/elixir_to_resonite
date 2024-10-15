@@ -53,6 +53,20 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected]
   end
 
+  test "create_object" do
+    result = InstructionCreation.create_object([], "F", "T", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                F                   T                                                           "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                T                   1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
+
   test "create_box" do
     result = InstructionCreation.create_box([], "Box1", "1.0", "1.1", "1.2")
 
@@ -80,6 +94,26 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
 
     assert result == [expected1, expected2]
   end
+
+  test "create_cone" do
+    result = InstructionCreation.create_cone([], "Cone1", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Cone                Cone1                                                       "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Cone1               1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
+
+  # Grid
+  # Quad
+  # Sphere
+  # Torus
+  # Triangle
 
   test "init_frame" do
     result = InstructionCreation.init_frame()
