@@ -71,8 +71,14 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     create_object(send_datas, "Cone", name, x, y, z)
   end
 
+  @doc """
+  Create Grid the 3D model object
+  """
+  def create_grid(send_datas, name, x, y, z) do
+    create_object(send_datas, "Grid", name, x, y, z)
+  end
+
   # TODO 下記の命令追加
-  # Grid
   # Quad
   # Sphere
   # Torus

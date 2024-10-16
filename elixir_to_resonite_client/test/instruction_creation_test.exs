@@ -109,6 +109,20 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected1, expected2]
   end
 
+  test "create_grid" do
+    result = InstructionCreation.create_grid([], "Grid1", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Grid                Grid1                                                       "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Grid1               1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
+
   # Grid
   # Quad
   # Sphere
