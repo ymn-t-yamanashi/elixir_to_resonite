@@ -137,7 +137,20 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected1, expected2]
   end
 
-  # Sphere
+  test "create_sphere" do
+    result = InstructionCreation.create_sphere([], "Sphere1", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Sphere              Sphere1                                                     "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Sphere1             1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
+
   # Torus
   # Triangle
 

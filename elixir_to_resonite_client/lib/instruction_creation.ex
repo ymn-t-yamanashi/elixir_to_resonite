@@ -85,8 +85,14 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     create_object(send_datas, "Quad", name, x, y, z)
   end
 
+  @doc """
+  Create Sphere the 3D model object
+  """
+  def create_sphere(send_datas, name, x, y, z) do
+    create_object(send_datas, "Sphere", name, x, y, z)
+  end
+
   # TODO 下記の命令追加
-  # Sphere
   # Torus
   # Triangle
 
