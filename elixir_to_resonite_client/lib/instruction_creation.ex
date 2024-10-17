@@ -42,8 +42,14 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     create_send_data(send_datas, "size", name, "#{x}", "#{y}", "#{z}")
   end
 
+  @doc """
+  show the 3D model object
+  """
+  def show(send_datas, name) do
+    create_send_data(send_datas, "show", name, "", "", "")
+  end
+
   # TODO 表示命令追加
-  # show
   # hide
 
   @doc """

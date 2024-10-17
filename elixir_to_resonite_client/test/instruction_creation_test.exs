@@ -53,6 +53,16 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected]
   end
 
+  test "show" do
+    result = InstructionCreation.show([], "Box2")
+
+    expected = """
+    ["","","resonite:lobby","new_msg",{"body":"show                Box2                                                                            "}]
+    """
+
+    assert result == [expected]
+  end
+
   test "create_object" do
     result = InstructionCreation.create_object([], "F", "T", "1.0", "1.1", "1.2")
 
