@@ -26,6 +26,8 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     create_send_data(send_datas, "delete", name, "", "", "")
   end
 
+  # TODO Resonite側未実装
+
   @doc """
   Rotate the 3D model object
   """
