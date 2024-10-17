@@ -165,8 +165,19 @@ defmodule ElixirToResoniteClient.InstructionCreationTest do
     assert result == [expected1, expected2]
   end
 
-  # Torus
-  # Triangle
+  test "create_triangle" do
+    result = InstructionCreation.create_triangle([], "Triangle1", "1.0", "1.1", "1.2")
+
+    expected1 = """
+    ["","","resonite:lobby","new_msg",{"body":"copy                Triangle            Triangle1                                                   "}]
+    """
+
+    expected2 = """
+    ["","","resonite:lobby","new_msg",{"body":"move                Triangle1           1.0                 1.1                 1.2                 "}]
+    """
+
+    assert result == [expected1, expected2]
+  end
 
   test "init_frame" do
     result = InstructionCreation.init_frame()

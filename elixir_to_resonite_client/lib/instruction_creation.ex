@@ -41,6 +41,8 @@ defmodule ElixirToResoniteClient.InstructionCreation do
   end
 
   # TODO 表示命令追加
+  # show
+  # hide
 
   @doc """
   Create 3D model object
@@ -99,9 +101,12 @@ defmodule ElixirToResoniteClient.InstructionCreation do
     create_object(send_datas, "Torus", name, x, y, z)
   end
 
-  # TODO 下記の命令追加
-
-  # Triangle
+  @doc """
+  Create Triangle the 3D model object
+  """
+  def create_triangle(send_datas, name, x, y, z) do
+    create_object(send_datas, "Triangle", name, x, y, z)
+  end
 
   @doc """
   Initialize the animation to the first frame
